@@ -1,0 +1,27 @@
+<?
+/**
+ * @var \Customer\AddressBook\Block\ViewBook $block
+ */
+$data = $block->getAddressBookByCustomerId();
+?>
+<style>
+
+</style>
+
+<table>
+    <tr>
+        <th class="">address_book_id</th>
+        <th class="">first_name</th>
+        <th class="">last_name</th>
+        <th class="">phone_number</th>
+    </tr>
+    <tr>
+        <td><?= $data['address_book_id']?></td>
+        <td><?= $data['first_name']?></td>
+        <td><?= $data['last_name']?></td>
+        <td><?= $data['phone_number']?></td>
+    </tr>
+</table>
+
+</body>
+</html>
