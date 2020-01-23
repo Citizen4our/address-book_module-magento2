@@ -2,19 +2,17 @@
 
 namespace Customer\AddressBook\Block;
 
+use Customer\AddressBook\Model\AddressBook;
+use Customer\AddressBook\Model\AddressBookFactory;
+use Customer\AddressBook\Model\ResourceModel\ResourceAddressBook;
+use Customer\AddressBook\Model\ResourceModel\ResourceAddressBookFactory;
 use Magento\Customer\Model\Session;
-use Magento\Framework\App\ObjectManager;
-use Magento\Framework\Data\Form\FormKey;
 use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Element\Template\Context;
 
 class AddedBook extends Template
 {
     const FORM_ACTION = '/book/page/save';
-
-    /**
-     * @var FormKey
-     */
-    private $formKey;
 
     /**
      * @var Session
@@ -22,18 +20,31 @@ class AddedBook extends Template
     private $session;
 
     /**
-     * AddedBook constructor.
-     * @param Template\Context $context
-     * @param FormKey $formKey
-     * @param Session $session
+     * @var AddressBookFactory
      */
-    public function __construct(Template\Context $context, FormKey $formKey, Session $session)
+    private $addressBookFactory;
+    /**
+     * @var ResourceAddressBookFactory
+     */
+    private $resourceAddressBookFactory;
+
+    /**
+     * AddedBook constructor.
+     * @param Context $context
+     * @param Session $session
+     * @param AddressBookFactory $addressBookFactory
+     * @param ResourceAddressBookFactory $resourceAddressBookFactory
+     */
+    public function __construct(
+        Context $context,
+        Session $session,
+        AddressBookFactory $addressBookFactory,
+        ResourceAddressBookFactory $resourceAddressBookFactory
+    )
     {
-        //Using of the ObjectManger is a bad practice. Why we are using it here?
-        $this->formKey = $formKey ?: ObjectManager::getInstance()->get(
-            FormKey::class
-        );
         $this->session = $session;
+        $this->addressBookFactory = $addressBookFactory;
+        $this->resourceAddressBookFactory = $resourceAddressBookFactory;
         parent::__construct($context);
     }
 
@@ -47,15 +58,25 @@ class AddedBook extends Template
         return self::FORM_ACTION;
     }
 
-        //Comments
-    public function getFormKey()
-    {
-        return $this->formKey->getFormKey();
-    }
-
-    //Comments
+    /**
+     * @return int|null
+     */
     public function getIdCustomer()
     {
         return $this->session->getId();
+    }
+
+    /**
+     * @return array|AddressBook
+     */
+    public function getDataAddressBookFromCustomer()
+    {
+        $id = $this->_request->getParam('id');
+        /** @var AddressBook $addressBook */
+        $addressBook = $this->addressBookFactory->create();
+        if (isset($id)) {
+            $this->resourceAddressBookFactory->create()->load($addressBook, $id, ResourceAddressBook::ID_FIELD_TITLE);
+        }
+        return $addressBook;
     }
 }

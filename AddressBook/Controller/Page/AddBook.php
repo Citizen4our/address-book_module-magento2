@@ -3,25 +3,27 @@
 
 namespace Customer\AddressBook\Controller\Page;
 
-
+use \Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Action\Action;
+use Magento\Framework\View\Result\PageFactory;
 
 class AddBook extends Action
 {
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var PageFactory
      */
     private $resultPageFactory;
 
     /**
      * AddBook constructor.
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
-    ) {
+        Context $context,
+        PageFactory $resultPageFactory
+    )
+    {
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
     }

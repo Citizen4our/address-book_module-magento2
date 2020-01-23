@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block class="Customer\AddressBook\Block\ViewBook" name="testsBlock" template="Customer_AddressBook::test_view.phtml" cacheable="false" />
+            <block class="Customer\AddressBook\Block\ViewListBook" name="testsBlock" template="Customer_AddressBook::list_address_book.phtml" cacheable="false" />
         </referenceContainer>
     </body>
 </page>

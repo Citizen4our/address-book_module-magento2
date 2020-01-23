@@ -1,15 +1,17 @@
 <?php
 
-//redudant new line
 namespace Customer\AddressBook\Controller\Page;
 
-//redudant new line
+use Customer\AddressBook\Model\AddressBook;
 use Customer\AddressBook\Model\AddressBookFactory;
+use Customer\AddressBook\Model\ResourceModel\ResourceAddressBook;
+use Customer\AddressBook\Model\ResourceModel\ResourceAddressBookFactory;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\UrlInterface;
 
 class Delete extends Action
 {
@@ -17,16 +19,39 @@ class Delete extends Action
      * @var Session
      */
     private $session;
-
+    /**
+     * @var UrlInterface
+     */
+    private $urlBuilder;
+    /**
+     * @var ResourceAddressBookFactory
+     */
+    private $resourceAddressBookFactory;
     /**
      * @var AddressBookFactory
      */
     private $addressBookFactory;
-    // add coment. Please use new line for each argument.
-    public function __construct(Context $context, AddressBookFactory $addressBookFactory, Session $session)
+
+    /**
+     * Delete constructor.
+     * @param Context $context
+     * @param Session $session
+     * @param UrlInterface $urlBuilder
+     * @param ResourceAddressBookFactory $resourceAddressBookFactory
+     * @param AddressBookFactory $addressBookFactory
+     */
+    public function __construct(
+        Context $context,
+        Session $session,
+        UrlInterface $urlBuilder,
+        ResourceAddressBookFactory $resourceAddressBookFactory,
+        AddressBookFactory $addressBookFactory
+    )
     {
-        $this->addressBookFactory = $addressBookFactory;
         $this->session = $session;
+        $this->urlBuilder = $urlBuilder;
+        $this->addressBookFactory = $addressBookFactory;
+        $this->resourceAddressBookFactory = $resourceAddressBookFactory;
         parent::__construct($context);
     }
 
@@ -36,11 +61,15 @@ class Delete extends Action
      */
     public function execute()
     {
-        $abbBook = $this->addressBookFactory->create();
-        $customerId = $this->session->getId();
-        $abbBook->load($customerId, 'customer_id')->delete();
+        $id = $this->_request->getParam('id');
+        /** @var AddressBook $addressBook */
+        $addressBook = $this->addressBookFactory->create();
+        /** @var ResourceAddressBook $resourceAddressBook */
+        $resourceAddressBook = $this->resourceAddressBookFactory->create();
+        $resourceAddressBook->load($addressBook, $id, ResourceAddressBook::ID_FIELD_TITLE)->delete($addressBook);
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $resultRedirect->setUrl('/customer/account');
+        $url = $this->urlBuilder->getUrl('book/page/view');
+        $resultRedirect->setUrl($url);
         return $resultRedirect;
     }
 }

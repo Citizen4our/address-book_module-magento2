@@ -1,0 +1,33 @@
+<?
+/**
+ * @var \Customer\AddressBook\Block\ViewListBook $block
+ */
+?>
+<style>
+
+</style>
+
+<table>
+    <tr>
+        <th class="">address_book_id</th>
+        <th class="">first_name</th>
+        <th class="">last_name</th>
+        <th class="">phone_number</th>
+        <th class="">Action</th>
+    </tr>
+    <?
+    /** @var \Customer\AddressBook\Model\AddressBook $item */
+    foreach ($block->getAddressBookListByCustomerId() as $item){
+        ?>
+        <tr>
+            <td><?= $item->getAddressBookId()?></td>
+            <td><?= $item->getFirstName()?></td>
+            <td><?= $item->getLastName()?></td>
+            <td><?= $item->getPhoneNumber()?></td>
+            <td>
+                <a href="<?= $block->getEditUrl($item->getAddressBookId()); ?>">edit</a>
+                <a href="<?= $block->getDeleteUrl($item->getAddressBookId()); ?>">delete</a>
+            </td>
+        </tr>
+    <?}?>
+</table>
