@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Customer\AddressBook\Setup;
-
 
 use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\InstallSchemaInterface;
