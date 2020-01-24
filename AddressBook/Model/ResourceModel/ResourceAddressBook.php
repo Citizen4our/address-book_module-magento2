@@ -7,6 +7,7 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 class ResourceAddressBook extends AbstractDb
 {
     const ID_FIELD_TITLE = 'address_book_id';
+
     /**
      * Resource initialization
      *

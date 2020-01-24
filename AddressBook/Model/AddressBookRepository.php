@@ -29,10 +29,12 @@ class AddressBookRepository implements AddressBookRepositoryInterface
      * @var CollectionFactory
      */
     private $collectionFactory;
+
     /**
      * @var CollectionProcessorInterface
      */
     private $collectionProcessor;
+
     /**
      * @var AddressBookSearchResultsInterfaceFactory
      */
