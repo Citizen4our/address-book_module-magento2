@@ -48,6 +48,7 @@ class ViewListBook extends Template
         /** @var Collection $collection */
         $collection = $this->collectionFactory->create();
         /** @var AddressBook $addressBook */
+//         Please check the type of $addressBook. I gues it's an array. 
         $addressBook = $collection->addFieldToFilter('customer_id', $customerId)->getItems();
 
         return $addressBook;
