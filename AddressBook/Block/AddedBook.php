@@ -18,11 +18,12 @@ class AddedBook extends Template
      * @var Session
      */
     private $session;
-// Please decide to use or not to use gaps between сlass properties
+
     /**
      * @var AddressBookFactory
      */
     private $addressBookFactory;
+
     /**
      * @var ResourceAddressBookFactory
      */
@@ -55,7 +56,7 @@ class AddedBook extends Template
      */
     public function getFormAction()
     {
-        return self::FORM_ACTION;
+        return $this->getUrl(self::FORM_ACTION, ['_secure' => true]);
     }
 
     /**

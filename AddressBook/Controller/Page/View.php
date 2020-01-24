@@ -4,8 +4,7 @@ namespace Customer\AddressBook\Controller\Page;
 
 use Magento\Framework\App\Action\Action;
 use \Magento\Framework\App\Action\Context;
-// what is the difference Magento... between \Magento\..
-use Magento\Framework\Controller\ResultFactory;
+use \Magento\Framework\Controller\ResultFactory;
 use \Magento\Framework\View\Result\PageFactory;
 use \Magento\Customer\Model\Session;
 
@@ -15,6 +14,7 @@ class View extends Action
      * @var PageFactory
      */
     private $resultPageFactory;
+
     /**
      * @var Session
      */

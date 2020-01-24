@@ -25,14 +25,20 @@ class AddressBook extends AbstractModel implements IdentityInterface
         return [self::CACHE_TAG . '_' . $this->getId()];
     }
 
+    /**
+     * @return array
+     */
     public function getDefaultValues()
     {
         return [];
     }
 
+    /**
+     * @return mixed
+     */
     public function getAddressBookId()
     {
-        return $this->getDataByKey('address_book_id');
+        return (int)$this->getDataByKey('address_book_id');
     }
 
     public function getFirstName()

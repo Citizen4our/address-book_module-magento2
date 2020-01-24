@@ -12,11 +12,14 @@ use Magento\Framework\View\Element\Template\Context;
 class ViewListBook extends Template
 {
     const LINK_DELETE = 'book/page/delete';
+
     const LINK_EDIT = 'book/page/addbook';
+
     /**
      * @var Session
      */
     private $session;
+
     /**
      * @var CollectionFactory
      */
@@ -40,15 +43,13 @@ class ViewListBook extends Template
     }
 
     /**
-     * @return AddressBook
+     * @return \Magento\Framework\DataObject[]
      */
     public function getAddressBookListByCustomerId()
     {
         $customerId = $this->session->getId();
         /** @var Collection $collection */
         $collection = $this->collectionFactory->create();
-        /** @var AddressBook $addressBook */
-//         Please check the type of $addressBook. I gues it's an array. 
         $addressBook = $collection->addFieldToFilter('customer_id', $customerId)->getItems();
 
         return $addressBook;
