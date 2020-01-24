@@ -18,7 +18,7 @@ class AddedBook extends Template
      * @var Session
      */
     private $session;
-
+// Please decide to use or not to use gaps between сlass properties
     /**
      * @var AddressBookFactory
      */
