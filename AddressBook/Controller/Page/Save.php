@@ -20,6 +20,7 @@ class Save extends Action
      * @var AddressBookFactory
      */
     private $addressBookFactory;
+
     /**
      * @var ResourceAddressBookFactory
      */
@@ -36,8 +37,6 @@ class Save extends Action
         Context $context,
         AddressBookFactory $addressBook,
         ResourceAddressBookFactory $resourceAddressBookFactory
-// please remove new lines
-
     )
     {
         $this->addressBookFactory = $addressBook;
