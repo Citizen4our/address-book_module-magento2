@@ -2,17 +2,16 @@
 
 namespace Customer\AddressBook\Block;
 
-use Customer\AddressBook\Model\AddressBook;
-use Customer\AddressBook\Model\AddressBookFactory;
-use Customer\AddressBook\Model\ResourceModel\ResourceAddressBook;
-use Customer\AddressBook\Model\ResourceModel\ResourceAddressBookFactory;
+use Customer\AddressBook\Api\AddressBookRepositoryInterfaceFactory;
+use Customer\AddressBook\Api\Data\AddressBookInterface;
+use Customer\AddressBook\Api\Data\AddressBookInterfaceFactory;
 use Magento\Customer\Model\Session;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 
 class AddedBook extends Template
 {
-    const FORM_ACTION = '/book/page/save';
+    const FORM_ACTION = 'book/page/save';
 
     /**
      * @var Session
@@ -20,37 +19,37 @@ class AddedBook extends Template
     private $session;
 
     /**
-     * @var AddressBookFactory
+     * @var AddressBookInterfaceFactory
      */
     private $addressBookFactory;
 
     /**
-     * @var ResourceAddressBookFactory
+     * @var AddressBookRepositoryInterfaceFactory
      */
-    private $resourceAddressBookFactory;
+    private $repositoryFactory;
 
     /**
      * AddedBook constructor.
      * @param Context $context
      * @param Session $session
-     * @param AddressBookFactory $addressBookFactory
-     * @param ResourceAddressBookFactory $resourceAddressBookFactory
+     * @param AddressBookInterfaceFactory $addressBookFactory
+     * @param AddressBookRepositoryInterfaceFactory $addressBookRepositoryFactory
      */
     public function __construct(
         Context $context,
         Session $session,
-        AddressBookFactory $addressBookFactory,
-        ResourceAddressBookFactory $resourceAddressBookFactory
+        AddressBookInterfaceFactory $addressBookFactory,
+        AddressBookRepositoryInterfaceFactory $addressBookRepositoryFactory
     )
     {
         $this->session = $session;
         $this->addressBookFactory = $addressBookFactory;
-        $this->resourceAddressBookFactory = $resourceAddressBookFactory;
+        $this->repositoryFactory = $addressBookRepositoryFactory;
         parent::__construct($context);
     }
 
     /**
-     * Get form action URL for POST booking request
+     * Get form action URL for POST request
      *
      * @return string
      */
@@ -68,16 +67,17 @@ class AddedBook extends Template
     }
 
     /**
-     * @return array|AddressBook
+     * @return AddressBookInterface
      */
     public function getDataAddressBookFromCustomer()
     {
         $id = $this->_request->getParam('id');
-        /** @var AddressBook $addressBook */
-        $addressBook = $this->addressBookFactory->create();
         if (isset($id)) {
-            $this->resourceAddressBookFactory->create()->load($addressBook, $id, ResourceAddressBook::ID_FIELD_TITLE);
+            return $this->repositoryFactory->create()->getAddressBook($id);
         }
+
+        /** @var AddressBookInterface $addressBook */
+        $addressBook = $this->addressBookFactory->create();
         return $addressBook;
     }
 }
