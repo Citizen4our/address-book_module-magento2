@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Customer\AddressBook\Api\AddressBookRepositoryInterface" type="Customer\AddressBook\Model\AddressBookRepository"/>
+    <preference for="Customer\AddressBook\Api\Data\AddressBookInterface" type="Customer\AddressBook\Model\AddressBook"/>
+    <preference for="Customer\AddressBook\Api\Data\AddressBookSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+</config>

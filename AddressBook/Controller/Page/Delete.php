@@ -2,6 +2,8 @@
 
 namespace Customer\AddressBook\Controller\Page;
 
+use Customer\AddressBook\Api\AddressBookRepositoryInterface;
+use Customer\AddressBook\Api\AddressBookRepositoryInterfaceFactory;
 use Customer\AddressBook\Model\AddressBook;
 use Customer\AddressBook\Model\AddressBookFactory;
 use Customer\AddressBook\Model\ResourceModel\ResourceAddressBook;
@@ -19,18 +21,26 @@ class Delete extends Action
      * @var Session
      */
     private $session;
+
     /**
      * @var UrlInterface
      */
     private $urlBuilder;
+
     /**
      * @var ResourceAddressBookFactory
      */
     private $resourceAddressBookFactory;
+
     /**
      * @var AddressBookFactory
      */
     private $addressBookFactory;
+
+    /**
+     * @var AddressBookRepositoryInterfaceFactory
+     */
+    private $addressBookRepositoryFactory;
 
     /**
      * Delete constructor.
@@ -39,13 +49,15 @@ class Delete extends Action
      * @param UrlInterface $urlBuilder
      * @param ResourceAddressBookFactory $resourceAddressBookFactory
      * @param AddressBookFactory $addressBookFactory
+     * @param AddressBookRepositoryInterfaceFactory $addressBookRepositoryFactory
      */
     public function __construct(
         Context $context,
         Session $session,
         UrlInterface $urlBuilder,
         ResourceAddressBookFactory $resourceAddressBookFactory,
-        AddressBookFactory $addressBookFactory
+        AddressBookFactory $addressBookFactory,
+        AddressBookRepositoryInterfaceFactory $addressBookRepositoryFactory
     )
     {
         $this->session = $session;
@@ -53,6 +65,7 @@ class Delete extends Action
         $this->addressBookFactory = $addressBookFactory;
         $this->resourceAddressBookFactory = $resourceAddressBookFactory;
         parent::__construct($context);
+        $this->addressBookRepositoryFactory = $addressBookRepositoryFactory;
     }
 
     /**
@@ -62,15 +75,18 @@ class Delete extends Action
     public function execute()
     {
         $id = $this->_request->getParam('id');
-        /** @var AddressBook $addressBook */
-        $addressBook = $this->addressBookFactory->create();
-        /** @var ResourceAddressBook $resourceAddressBook */
-        $resourceAddressBook = $this->resourceAddressBookFactory->create();
-        $resourceAddressBook->load($addressBook, $id, ResourceAddressBook::ID_FIELD_TITLE)->delete($addressBook);
+
+        try {
+            /** @var AddressBookRepositoryInterface $repository */
+            $repository = $this->addressBookRepositoryFactory->create();
+            $repository->deleteByABId($id);
+        } catch (\Exception $exception) {
+            $this->messageManager->addErrorMessage($exception->getMessage());
+        }
+
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         $url = $this->urlBuilder->getUrl('book/page/view');
         $resultRedirect->setUrl($url);
         return $resultRedirect;
     }
 }
-//add new line

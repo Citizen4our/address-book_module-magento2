@@ -1,12 +1,8 @@
-<?
+<?php
 /**
  * @var \Customer\AddressBook\Block\ViewListBook $block
  */
 ?>
-<style>
-
-</style>
-
 <table>
     <tr>
         <th class="">address_book_id</th>
@@ -16,7 +12,7 @@
         <th class="">Action</th>
     </tr>
     <?
-    /** @var \Customer\AddressBook\Model\AddressBook $item */
+    /** @var \Customer\AddressBook\Api\Data\AddressBookInterface $item */
     foreach ($block->getAddressBookListByCustomerId() as $item){
         ?>
         <tr>

@@ -3,6 +3,8 @@
 //new line?
 namespace Customer\AddressBook\Controller\Page;
 
+use Customer\AddressBook\Api\AddressBookRepositoryInterface;
+use Customer\AddressBook\Api\AddressBookRepositoryInterfaceFactory;
 use Customer\AddressBook\Model\AddressBook;
 use Customer\AddressBook\Model\AddressBookFactory;
 use Customer\AddressBook\Model\ResourceModel\ResourceAddressBook;
@@ -22,31 +24,30 @@ class Save extends Action
     private $addressBookFactory;
 
     /**
-     * @var ResourceAddressBookFactory
+     * @var AddressBookRepositoryInterfaceFactory
      */
-    private $resourceAddressBookFactory;
+    private $addressBookRepository;
 
     /**
      * Save constructor.
      * @param Context $context
      * @param AddressBookFactory $addressBook
-     * @param UrlInterface $urlBuilder
-     * @param ResourceAddressBookFactory $resourceAddressBookFactory
+     * @param AddressBookRepositoryInterfaceFactory $addressBookRepository
      */
     public function __construct(
         Context $context,
         AddressBookFactory $addressBook,
-        ResourceAddressBookFactory $resourceAddressBookFactory
+        AddressBookRepositoryInterfaceFactory $addressBookRepository
     )
     {
         $this->addressBookFactory = $addressBook;
-        $this->resourceAddressBookFactory = $resourceAddressBookFactory;
+
+        $this->addressBookRepository = $addressBookRepository;
         parent::__construct($context);
     }
 
     /**
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
-     * @throws \Exception
      */
     public function execute()
     {
@@ -56,9 +57,9 @@ class Save extends Action
             $addressBook = $this->addressBookFactory->create();
             /** @var AddressBook $addressBook */
             $addressBook->setData($post);
-            /** @var ResourceAddressBook $resourceAddressBook */
-            $resourceAddressBook = $this->resourceAddressBookFactory->create();
-            $resourceAddressBook->save($addressBook);
+            /** @var AddressBookRepositoryInterface $repository */
+            $repository = $this->addressBookRepository->create();
+            $repository->save($addressBook);
             $url = $this->_url->getUrl(self::VIEW_ADDRESS_BOOK_LINK);
             $resultRedirect->setUrl($url);
             return $resultRedirect;

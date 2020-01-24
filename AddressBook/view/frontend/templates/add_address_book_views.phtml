@@ -1,4 +1,4 @@
-<?//Саня сказал что хуйня =). Я с ни согласен. Пиши <?php
+<?php
 /**
  * @var \Customer\AddressBook\Block\AddedBook $block
  */
@@ -10,12 +10,12 @@ $dataAddressBook = $block->getDataAddressBookFromCustomer();
     <?= $block->getBlockHtml('formkey') ?>
     <input name="first_name" type="text" value="<?= $dataAddressBook->getFirstName() ?>">
     <label for=""><?= __('Last name') ?></label>
-    <input name="last_name" type="text" value="<?= $dataAddressBook['last_name'] ?>">
+    <input name="last_name" type="text" value="<?= $dataAddressBook->getLastName() ?>">
     <label for=""><?= __('Phone') ?></label>
-    <input name="phone_number" type="text" value="<?= $dataAddressBook['phone_number'] ?>">
+    <input name="phone_number" type="text" value="<?= $dataAddressBook->getPhoneNumber() ?>">
     <input type="hidden" value="<?= $block->getIdCustomer() ?>" name="customer_id">
-    <? if ($dataAddressBook['address_book_id']) { ?>
-        <input type="hidden" value="<?= $dataAddressBook['address_book_id'] ?>" name="address_book_id">
+    <? if ($dataAddressBook->getAddressBookId()) { ?>
+        <input type="hidden" value="<?= $dataAddressBook->getAddressBookId() ?>" name="address_book_id">
     <? } ?>
     <input type="submit" value="<?= __('Save address book') ?>">
 </form>
