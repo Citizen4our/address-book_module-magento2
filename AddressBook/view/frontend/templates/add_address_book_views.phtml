@@ -1,4 +1,4 @@
-<?
+<?//Саня сказал что хуйня =). Я с ни согласен. Пиши <?php
 /**
  * @var \Customer\AddressBook\Block\AddedBook $block
  */
@@ -13,6 +13,7 @@ $dataAddressBook = $block->getDataAddressBookFromCustomer();
     <input name="last_name" type="text" value="<?= $dataAddressBook['last_name'] ?>">
     <label for=""><?= __('Phone') ?></label>
     <input name="phone_number" type="text" value="<?= $dataAddressBook['phone_number'] ?>">
+<!-- customer_id filed is redudant, because we have customer ID in the session.     -->
     <input type="hidden" value="<?= $block->getIdCustomer() ?>" name="customer_id">
     <? if ($dataAddressBook['address_book_id']) { ?>
         <input type="hidden" value="<?= $dataAddressBook['address_book_id'] ?>" name="address_book_id">
