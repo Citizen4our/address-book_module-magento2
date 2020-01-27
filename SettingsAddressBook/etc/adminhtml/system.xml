@@ -17,5 +17,20 @@
                 </field>
             </group>
         </section>
+        <section id="settings_pogonjalo" translate="label" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Variant alias</label>
+            <tab>settings_addressbook</tab>
+            <resource>Customer_SettingsAddressBook::pogonjalo_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="nouns" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Nouns variant</label>
+                </field>
+                <field id="adjectives" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Adjectives variant</label>
+                </field>
+            </group>
+        </section>
     </system>
 </config>

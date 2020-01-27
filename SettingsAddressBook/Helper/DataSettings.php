@@ -7,7 +7,7 @@ use Magento\Store\Model\ScopeInterface;
 
 class DataSettings extends AbstractHelper
 {
-    const XML_PATH = 'addressbook/general/';
+    const XML_PATH = 'type_order/general/';
 
     /**
      * @param $field
