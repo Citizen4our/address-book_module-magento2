@@ -2,10 +2,16 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <addressbook>
+        <type_order>
             <general>
                 <orderName>1</orderName>
             </general>
-        </addressbook>
+        </type_order>
+        <settings_pogonjalo>
+            <general>
+                <nouns>белка,пес,зяблик</nouns>
+                <adjectives>хитрый,добрый,пушистый</adjectives>
+            </general>
+        </settings_pogonjalo>
     </default>
 </config>
