@@ -127,6 +127,7 @@ class AddressBookRepository implements AddressBookRepositoryInterface
         $searchResults->setSearchCriteria($searchCriteria);
         $searchResults->setItems($collection->getItems());
         $searchResults->setTotalCount($collection->getSize());
-        return $searchResults->getItems();
+        $adressBookList = $searchResults->getItems();
+        return $adressBookList;
     }
 }

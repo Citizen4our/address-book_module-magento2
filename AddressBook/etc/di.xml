@@ -4,4 +4,7 @@
     <preference for="Customer\AddressBook\Api\AddressBookRepositoryInterface" type="Customer\AddressBook\Model\AddressBookRepository"/>
     <preference for="Customer\AddressBook\Api\Data\AddressBookInterface" type="Customer\AddressBook\Model\AddressBook"/>
     <preference for="Customer\AddressBook\Api\Data\AddressBookSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <type name="Customer\AddressBook\Api\Data\AddressBookInterface">
+        <plugin name="Customer_SettingsAddressBook_plugin" type="Customer\SettingsAddressBook\Plugin\OrderNamePlugin" sortOrder="1" disabled="false" />
+    </type>
 </config>
