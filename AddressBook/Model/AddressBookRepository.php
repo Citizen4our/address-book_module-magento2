@@ -7,7 +7,7 @@ use Customer\AddressBook\Api\Data\AddressBookInterface;
 use Customer\AddressBook\Api\Data\AddressBookInterfaceFactory;
 use Customer\AddressBook\Api\Data\AddressBookSearchResultsInterfaceFactory;
 use Customer\AddressBook\Model\ResourceModel\AddressBook\CollectionFactory;
-use Customer\AddressBook\Model\ResourceModel\ResourceAddressBook;
+use Customer\AddressBook\Model\ResourceModel\AddressBook;
 use Customer\AddressBook\Model\ResourceModel\ResourceAddressBookFactory;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
@@ -16,7 +16,7 @@ use Magento\Framework\Exception\CouldNotSaveException;
 class AddressBookRepository implements AddressBookRepositoryInterface
 {
     /**
-     * @var ResourceAddressBook
+     * @var AddressBook
      */
     private $resource;
 

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Customer\AddressBook\Controller\Page;
 
 use \Magento\Framework\App\Action\Context;

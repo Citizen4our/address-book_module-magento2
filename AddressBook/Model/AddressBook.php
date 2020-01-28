@@ -15,7 +15,7 @@ class AddressBook extends AbstractModel implements IdentityInterface, AddressBoo
      */
     protected function _construct()
     {
-        $this->_init(\Customer\AddressBook\Model\ResourceModel\ResourceAddressBook::class);
+        $this->_init(\Customer\AddressBook\Model\ResourceModel\AddressBook::class);
     }
 
     /**

@@ -13,7 +13,7 @@ class Collection extends AbstractCollection
     {
         $this->_init(
             \Customer\AddressBook\Model\AddressBook::class,
-            \Customer\AddressBook\Model\ResourceModel\ResourceAddressBook::class
+            \Customer\AddressBook\Model\ResourceModel\AddressBook::class
         );
     }
 }

@@ -1,18 +1,14 @@
 <?php
 
-//new line?
 namespace Customer\AddressBook\Controller\Page;
 
 use Customer\AddressBook\Api\AddressBookRepositoryInterface;
 use Customer\AddressBook\Api\AddressBookRepositoryInterfaceFactory;
-use Customer\AddressBook\Model\AddressBook;
 use Customer\AddressBook\Model\AddressBookFactory;
-use Customer\AddressBook\Model\ResourceModel\ResourceAddressBook;
-use Customer\AddressBook\Model\ResourceModel\ResourceAddressBookFactory;
+use Customer\AddressBook\Model\ResourceModel\AddressBook;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\ResultFactory;
-use Magento\Framework\UrlInterface;
 
 class Save extends Action
 {

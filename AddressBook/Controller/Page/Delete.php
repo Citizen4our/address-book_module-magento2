@@ -2,12 +2,9 @@
 
 namespace Customer\AddressBook\Controller\Page;
 
-//TODO: Please be sure that all you use all classes bellow
 use Customer\AddressBook\Api\AddressBookRepositoryInterface;
 use Customer\AddressBook\Api\AddressBookRepositoryInterfaceFactory;
-use Customer\AddressBook\Model\AddressBook;
 use Customer\AddressBook\Model\AddressBookFactory;
-use Customer\AddressBook\Model\ResourceModel\ResourceAddressBook;
 use Customer\AddressBook\Model\ResourceModel\ResourceAddressBookFactory;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
