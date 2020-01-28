@@ -4,12 +4,10 @@ namespace Customer\SettingsAddressBook\Plugin;
 
 use Customer\AddressBook\Model\AddressBook;
 use Customer\SettingsAddressBook\Helper\DataSettings;
+use Customer\SettingsAddressBook\Model\Config\Constants\AddressBookConstantsOrder;
 
 class OrderNamePlugin
 {
-    const FIRST_NAME_LAST_NAME = 1;
-
-    const LAST_NAME_FIRST_NAME = 2;
 
     /**
      * @var DataSettings
@@ -41,10 +39,10 @@ class OrderNamePlugin
         $fullName = '';
 
         switch ($typeOrder) {
-            case self::FIRST_NAME_LAST_NAME:
+            case AddressBookConstantsOrder::FIRST_NAME_LAST_NAME:
                 $fullName = "{$addressBook->getFirstName()}  {$addressBook->getLastName()}";
                 break;
-            case self::LAST_NAME_FIRST_NAME:
+            case AddressBookConstantsOrder::LAST_NAME_FIRST_NAME:
                 $fullName = "{$addressBook->getLastName()}  {$addressBook->getFirstName()}";
                 break;
         }

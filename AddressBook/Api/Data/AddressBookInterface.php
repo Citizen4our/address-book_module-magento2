@@ -18,10 +18,6 @@ interface AddressBookInterface extends ExtensibleDataInterface
 
     const CUSTOMER_ID = 'customer_id';
 
-    const FIRST_NAME_LAST_NAME = 1;
-
-    const LAST_NAME_FIRST_NAME = 2;
-
     /**
      * Get ID AddressBook
      * @return int
