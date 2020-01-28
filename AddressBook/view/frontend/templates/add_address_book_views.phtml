@@ -5,17 +5,51 @@
 /** @var \Customer\AddressBook\Model\AddressBook $dataAddressBook */
 $dataAddressBook = $block->getDataAddressBookFromCustomer();
 ?>
-<form action="<?= $block->escapeUrl($block->getFormAction()) ?>" method="post">
-    <label for=""><?= __('First name') ?></label>
-    <?= $block->getBlockHtml('formkey') ?>
-    <input name="first_name" type="text" value="<?= $dataAddressBook->getFirstName() ?>">
-    <label for=""><?= __('Last name') ?></label>
-    <input name="last_name" type="text" value="<?= $dataAddressBook->getLastName() ?>">
-    <label for=""><?= __('Phone') ?></label>
-    <input name="phone_number" type="text" value="<?= $dataAddressBook->getPhoneNumber() ?>">
-    <input type="hidden" value="<?= $block->getIdCustomer() ?>" name="customer_id">
-    <? if ($dataAddressBook->getAddressBookId()) { ?>
-        <input type="hidden" value="<?= $dataAddressBook->getAddressBookId() ?>" name="address_book_id">
-    <? } ?>
-    <input type="submit" value="<?= __('Save address book') ?>">
+<style>
+    .form-added-address-book{
+        width: 50%;
+    }
+</style>
+<form class="form-added-address-book"
+      action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <div class="field name required">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__('First name')) ?></span></label>
+            <div class="control">
+                <input name="first_name" id="name" type="text" value="<?= $dataAddressBook->getFirstName() ?>" required>
+            </div>
+        </div>
+        <div class="field required">
+            <label class="label" for="last_name"><span><?= $block->escapeHtml(__('Last name')) ?></span></label>
+            <div class="control">
+                <input name="last_name" id="last_name" type="text" value="<?= $dataAddressBook->getLastName() ?>"
+                       required>
+            </div>
+        </div>
+        <div class="field telephone">
+            <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
+            <div class="control">
+                <input name="phone_number" id="telephone" title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
+                       value="<?= $dataAddressBook->getPhoneNumber() ?>"
+                       class="input-text" type="text"/>
+            </div>
+        </div>
+        <input type="hidden" value="<?= $block->getIdCustomer() ?>" name="customer_id">
+        <? if ($dataAddressBook->getAddressBookId()) { ?>
+            <input type="hidden" value="<?= $dataAddressBook->getAddressBookId() ?>" name="address_book_id">
+        <? } ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <?= $block->getBlockHtml('formkey') ?>
+            <input type="hidden" name="hideit" id="hideit" value=""/>
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
 </form>
