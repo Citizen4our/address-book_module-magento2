@@ -9,6 +9,7 @@
             <label>Order name</label>
             <tab>settings_addressbook</tab>
             <resource>Customer_SettingsAddressBook::ordername_config</resource>
+<!-- TODO: please check what is showInWebsite and showInStore used for and reworked if reuqired.              -->
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>General Configuration</label>
                 <field id="orderName" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
