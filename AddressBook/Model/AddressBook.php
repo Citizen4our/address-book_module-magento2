@@ -10,6 +10,8 @@ class AddressBook extends AbstractModel implements IdentityInterface, AddressBoo
 {
     const  CACHE_TAG = 'add_book';
 
+    protected $_eventPrefix = 'address_book_event';
+
     /**
      * initialization Model
      */
@@ -80,5 +82,13 @@ class AddressBook extends AbstractModel implements IdentityInterface, AddressBoo
     public function getFullName()
     {
         return "{$this->getFirstName()}  {$this->getLastName()}";
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlias()
+    {
+        return $this->getDataByKey(self::POGONJALO);
     }
 }

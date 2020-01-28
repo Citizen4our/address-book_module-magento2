@@ -18,6 +18,8 @@ interface AddressBookInterface extends ExtensibleDataInterface
 
     const CUSTOMER_ID = 'customer_id';
 
+    const POGONJALO = 'pogonjalo';
+
     /**
      * Get ID AddressBook
      * @return int
@@ -48,4 +50,9 @@ interface AddressBookInterface extends ExtensibleDataInterface
      * @return string
      */
     public function getFullName();
+
+    /**
+     * @return string
+     */
+    public function getAlias();
 }
