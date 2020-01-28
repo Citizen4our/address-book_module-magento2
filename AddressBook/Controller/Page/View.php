@@ -50,8 +50,6 @@ class View extends Action
         }
         $resultPage = $this->resultPageFactory->create();
         $resultPage->getConfig()->getTitle()->prepend(__('Customer: Address book '));
-        $this->_view->loadLayout();
-        $this->_view->renderLayout();
         return $resultPage;
     }
 }
