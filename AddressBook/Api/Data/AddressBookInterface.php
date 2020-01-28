@@ -49,8 +49,7 @@ interface AddressBookInterface extends ExtensibleDataInterface
     public function getCustomerId();
 
     /**
-     * @param int $order
      * @return string
      */
-    public function getFullName(int $order);
+    public function getFullName();
 }
