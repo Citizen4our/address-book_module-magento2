@@ -8,7 +8,7 @@ use Customer\AddressBook\Api\Data\AddressBookInterfaceFactory;
 use Customer\AddressBook\Api\Data\AddressBookSearchResultsInterfaceFactory;
 use Customer\AddressBook\Model\ResourceModel\AddressBook\CollectionFactory;
 use Customer\AddressBook\Model\ResourceModel\AddressBook;
-use Customer\AddressBook\Model\ResourceModel\ResourceAddressBookFactory;
+use Customer\AddressBook\Model\ResourceModel\AddressBookFactory as ResourceAddressBookFactory;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotSaveException;

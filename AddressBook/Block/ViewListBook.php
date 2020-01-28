@@ -14,7 +14,7 @@ class ViewListBook extends Template
 {
     const LINK_DELETE = 'book/page/delete';
 
-    const LINK_EDIT = 'book/page/addbook';
+    const LINK_ADD_OR_EDIT = 'book/page/addbook';
 
     /**
      * @var Session
@@ -77,6 +77,14 @@ class ViewListBook extends Template
      */
     public function getEditUrl(int $idAddressBook)
     {
-        return $this->_urlBuilder->getUrl(self::LINK_EDIT, ['id' => $idAddressBook]);
+        return $this->_urlBuilder->getUrl(self::LINK_ADD_OR_EDIT, ['id' => $idAddressBook]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddLink()
+    {
+        return $this->_urlBuilder->getUrl(self::LINK_ADD_OR_EDIT);
     }
 }

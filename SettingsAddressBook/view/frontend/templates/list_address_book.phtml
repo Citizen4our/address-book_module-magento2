@@ -1,0 +1,30 @@
+<?php
+/**
+ * @var \Customer\AddressBook\Block\ViewListBook $block
+ */
+?>
+<a href="<?= $block->getAddLink()?>"><?= __('Add new contact')?></a>
+<table>
+    <tr>
+        <th class=""><?=__('Address book ID')?></th>
+        <th class=""><?= __('Name')?></th>
+        <th class=""><?= __('Phone number')?></th>
+        <th class=""><?= __('Pogonjalo')?></th>
+        <th class=""></th>
+    </tr>
+    <?
+    /** @var \Customer\AddressBook\Api\Data\AddressBookInterface $item */
+    foreach ($block->getAddressBookListByCustomerId() as $item){
+        ?>
+        <tr>
+            <td><?= $item->getAddressBookId()?></td>
+            <td><?= $item->getFullName()?></td>
+            <td><?= $item->getPhoneNumber()?></td>
+            <td><?= $item->getAlias()?></td>
+            <td>
+                <a href="<?= $block->getEditUrl($item->getAddressBookId()); ?>">edit</a>
+                <a href="<?= $block->getDeleteUrl($item->getAddressBookId()); ?>">delete</a>
+            </td>
+        </tr>
+    <?}?>
+</table>

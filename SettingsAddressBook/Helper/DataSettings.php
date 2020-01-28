@@ -5,10 +5,9 @@ namespace Customer\SettingsAddressBook\Helper;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
 
-class DataSettings extends AbstractHelper
+abstract class DataSettings extends AbstractHelper
 {
-    const XML_PATH = 'type_order/general/';
-
+    protected $pathXML = '';
     /**
      * @param $field
      * @param null $storeId
@@ -30,6 +29,6 @@ class DataSettings extends AbstractHelper
      */
     public function getGeneralConfig($code, $storeId = null)
     {
-        return $this->getConfigValue(self::XML_PATH . $code, $storeId);
+        return $this->getConfigValue($this->pathXML . $code, $storeId);
     }
 }

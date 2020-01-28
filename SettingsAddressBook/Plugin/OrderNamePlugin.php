@@ -3,23 +3,23 @@
 namespace Customer\SettingsAddressBook\Plugin;
 
 use Customer\AddressBook\Model\AddressBook;
-use Customer\SettingsAddressBook\Helper\DataSettings;
+use Customer\SettingsAddressBook\Helper\OrderTypeFromNameSettings;
 use Customer\SettingsAddressBook\Model\Config\Constants\AddressBookConstantsOrder;
 
 class OrderNamePlugin
 {
 
     /**
-     * @var DataSettings
+     * @var OrderTypeFromNameSettings
      */
     private $dataSettings;
 
     /**
      * OrderNamePlugin constructor.
-     * @param DataSettings $dataSettings
+     * @param OrderTypeFromNameSettings $dataSettings
      */
     public function __construct(
-        DataSettings $dataSettings
+        OrderTypeFromNameSettings $dataSettings
     )
     {
         $this->dataSettings = $dataSettings;

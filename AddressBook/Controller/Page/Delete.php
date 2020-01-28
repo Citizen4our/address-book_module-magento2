@@ -5,7 +5,7 @@ namespace Customer\AddressBook\Controller\Page;
 use Customer\AddressBook\Api\AddressBookRepositoryInterface;
 use Customer\AddressBook\Api\AddressBookRepositoryInterfaceFactory;
 use Customer\AddressBook\Model\AddressBookFactory;
-use Customer\AddressBook\Model\ResourceModel\ResourceAddressBookFactory;
+use Customer\AddressBook\Model\ResourceModel\AddressBookFactory as ResourceAddressBookFactory;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
