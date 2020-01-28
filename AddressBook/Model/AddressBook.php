@@ -75,21 +75,10 @@ class AddressBook extends AbstractModel implements IdentityInterface, AddressBoo
     }
 
     /**
-     * @param int $order
      * @return string
      */
-    public function getFullName(int $order = AddressBook::LAST_NAME_FIRST_NAME)
+    public function getFullName()
     {
-        $fullName = '';
-        switch ($order){
-            case self::FIRST_NAME_LAST_NAME:
-                $fullName = "{$this->getFirstName()}  {$this->getLastName()}";
-                break;
-            case self::LAST_NAME_FIRST_NAME:
-                $fullName = "{$this->getLastName()}  {$this->getFirstName()}";
-                break;
-
-        }
-        return $fullName;
+        return "{$this->getFirstName()}  {$this->getLastName()}";
     }
 }

@@ -7,6 +7,10 @@ use Customer\SettingsAddressBook\Helper\DataSettings;
 
 class OrderNamePlugin
 {
+    const FIRST_NAME_LAST_NAME = 1;
+
+    const LAST_NAME_FIRST_NAME = 2;
+
     /**
      * @var DataSettings
      */
@@ -23,15 +27,27 @@ class OrderNamePlugin
         $this->dataSettings = $dataSettings;
     }
 
-
-    public function beforeGetFullName(AddressBook $addressBook)
+    /**
+     * the substitution of the result of the method depending on the settings
+     * @param AddressBook $addressBook
+     *
+     * @param $result
+     * @return string
+     */
+    public function afterGetFullName(AddressBook $addressBook, $result)
     {
-        $typeOrder = $this->dataSettings->getGeneralConfig('orderName');
+        $typeOrder = (int)$this->dataSettings->getGeneralConfig('orderName');
 
-        if ($typeOrder) {
-            return $typeOrder;
+        $fullName = '';
+
+        switch ($typeOrder) {
+            case self::FIRST_NAME_LAST_NAME:
+                $fullName = "{$addressBook->getFirstName()}  {$addressBook->getLastName()}";
+                break;
+            case self::LAST_NAME_FIRST_NAME:
+                $fullName = "{$addressBook->getLastName()}  {$addressBook->getFirstName()}";
+                break;
         }
-
-        return AddressBook::FIRST_NAME_LAST_NAME;
+        return $fullName;
     }
 }
