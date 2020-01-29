@@ -7,4 +7,17 @@
     <type name="Customer\AddressBook\Api\Data\AddressBookInterface">
         <plugin name="Customer_SettingsAddressBook_plugin" type="Customer\SettingsAddressBook\Plugin\OrderNamePlugin" sortOrder="1" disabled="false" />
     </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="customer_addressbook_list_data_source" xsi:type="string">Customer\AddressBook\Model\ResourceModel\AddressBook\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Customer\AddressBook\Model\ResourceModel\AddressBook\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">address_book</argument>
+            <argument name="resourceModel" xsi:type="string">Customer\AddressBook\Model\ResourceModel\AddressBook</argument>
+        </arguments>
+    </virtualType>
 </config>

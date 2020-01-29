@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Customer_AddressBook::addressbook" title="Address Book" module="Customer_AddressBook" sortOrder="52" resource="Customer_AddressBook::addressbook"/>
+        <add id="Customer_AddressBook::list" title="Manage AB list" module="Customer_AddressBook" sortOrder="10" action="customer_addressbook/listab" resource="Customer_AddressBook::list" parent="Customer_AddressBook::addressbook"/>
+    </menu>
+</config>
