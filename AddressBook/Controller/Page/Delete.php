@@ -10,6 +10,7 @@ use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\UrlInterface;
 
@@ -81,10 +82,11 @@ class Delete extends Action
         } catch (\Exception $exception) {
             $this->messageManager->addErrorMessage($exception->getMessage());
         }
-
-        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $url = $this->urlBuilder->getUrl('book/page/view');
-        $resultRedirect->setUrl($url);
+        /** @var Json $resultRedirect */
+        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+        $resultRedirect->setData([
+            'success' => true
+        ]);
         return $resultRedirect;
     }
 }

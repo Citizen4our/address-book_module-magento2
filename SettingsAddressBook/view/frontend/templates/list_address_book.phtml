@@ -4,7 +4,8 @@
  */
 ?>
 <a href="<?= $block->getAddLink()?>"><?= __('Add new contact')?></a>
-<table>
+<?= $block->getBlockHtml('formkey') ?>
+<table class="address-book-table">
     <tr>
         <th class=""><?=__('Address book ID')?></th>
         <th class=""><?= __('Name')?></th>
@@ -23,8 +24,18 @@
             <td><?= $item->getAlias()?></td>
             <td>
                 <a href="<?= $block->getEditUrl($item->getAddressBookId()); ?>">edit</a>
-                <a href="<?= $block->getDeleteUrl($item->getAddressBookId()); ?>">delete</a>
+                <a class="js-delete-address-book-item action primary delete-address-book" href="<?= $block->getDeleteUrl($item->getAddressBookId()); ?>">delete</a>
             </td>
         </tr>
     <?}?>
 </table>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "deleteAddressBook": {
+                "rootElem": ".address-book-table",
+                "deleteElem": ".js-delete-address-book-item"
+            }
+        }
+    }
+</script>
