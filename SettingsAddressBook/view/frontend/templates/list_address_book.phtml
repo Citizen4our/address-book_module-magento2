@@ -3,31 +3,44 @@
  * @var \Customer\AddressBook\Block\ViewListBook $block
  */
 ?>
-<a href="<?= $block->getAddLink()?>"><?= __('Add new contact')?></a>
+<a class="action primary" href="<?= $block->getAddLink() ?>"><?= __('Add new contact') ?></a>
 <?= $block->getBlockHtml('formkey') ?>
-<table class="address-book-table">
+<table class="table address-book-table">
+    <colgroup>
+        <col>
+        <col>
+        <col>
+        <col>
+        <col width="15%">
+    </colgroup>
+    <thead>
     <tr>
-        <th class=""><?=__('Address book ID')?></th>
-        <th class=""><?= __('Name')?></th>
-        <th class=""><?= __('Phone number')?></th>
-        <th class=""><?= __('Pogonjalo')?></th>
+        <th class=""><?= __('Address book ID') ?></th>
+        <th class=""><?= __('Name') ?></th>
+        <th class=""><?= __('Phone number') ?></th>
+        <th class=""><?= __('Pogonjalo') ?></th>
         <th class=""></th>
     </tr>
+    </thead>
+    <tbody>
     <?
     /** @var \Customer\AddressBook\Api\Data\AddressBookInterface $item */
-    foreach ($block->getAddressBookListByCustomerId() as $item){
+    foreach ($block->getAddressBookListByCustomerId() as $item) {
         ?>
         <tr>
-            <td><?= $item->getAddressBookId()?></td>
-            <td><?= $item->getFullName()?></td>
-            <td><?= $item->getPhoneNumber()?></td>
-            <td><?= $item->getAlias()?></td>
+            <td><?= $item->getAddressBookId() ?></td>
+            <td><?= $item->getFullName() ?></td>
+            <td><?= $item->getPhoneNumber() ?></td>
+            <td><?= $item->getAlias() ?></td>
             <td>
-                <a href="<?= $block->getEditUrl($item->getAddressBookId()); ?>">edit</a>
-                <a class="js-delete-address-book-item action primary delete-address-book" href="<?= $block->getDeleteUrl($item->getAddressBookId()); ?>">delete</a>
+                <a class="action primary edit-address-book"
+                   href="<?= $block->getEditUrl($item->getAddressBookId()); ?>">edit</a>
+                <a class="js-delete-address-book-item action primary delete-address-book"
+                   href="<?= $block->getDeleteUrl($item->getAddressBookId()); ?>">delete</a>
             </td>
         </tr>
-    <?}?>
+    <? } ?>
+    </tbody>
 </table>
 <script type="text/x-magento-init">
     {
@@ -38,4 +51,5 @@
             }
         }
     }
+
 </script>
