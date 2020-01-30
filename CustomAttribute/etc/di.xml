@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for='Customer\AddressBook\Model\AddressBook' type='Customer\CustomAttribute\Model\ExtendAddressBook' />
+    <preference for="Customer\CustomAttribute\Api\Data\ExtendedAddressBookInterface" type="Customer\CustomAttribute\Model\ExtendAddressBook"/>
+    <type name="Customer\AddressBook\Api\AddressBookRepositoryInterface">
+        <plugin name="save_book_attribute" type="Customer\CustomAttribute\Plugin\BookAttributeSave"/>
+        <!--        <plugin name="get_book_attribute" type="Customer\CustomAttribute\Plugin\BookAttributeGet"/>-->
+    </type>
+</config>

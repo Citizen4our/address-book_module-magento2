@@ -12,6 +12,7 @@ define([
                 var self = $(this);
                 var fd = new FormData();
                 fd.append('form_key', $('input[name=form_key]').val());
+                $('body').trigger('processStart');
                 fetch(self.attr('href'), {
                     method: 'post',
                     body: fd
@@ -22,6 +23,7 @@ define([
                         }
                     })
                     .then((resData) => {
+                        $('body').trigger('processStop');
                         if (resData.success) {
                             alert({
                                 title: $.mage.__('Success'),
